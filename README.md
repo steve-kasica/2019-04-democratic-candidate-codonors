@@ -2,6 +2,40 @@
 
 This repository contains data and code supporting a [BuzzFeed News article examining donors](https://www.buzzfeednews.com/article/tariniparti/democratic-donors-2020-candidates) who gave more than $200 to multiple Democratic presidential candidates in the first quarter of the 2020 election cycle, published April 16, 2019. See below for details.
 
+## Steve's Notes
+
+This notebook does an cool bit of deduplication in cell execution 14 to prevent double counting after a self join.
+
+```
+candidate_pairs = (
+    contributor_totals
+    .rename(columns = {
+        "Candidate Name": "candidate"
+    })
+    [[
+        "donor_id",
+        "candidate"
+    ]]
+    .pipe(lambda df: (
+        df
+        .merge(
+            df,
+            how = "left",
+            on = "donor_id",
+            suffixes = [ "_x", "_y" ],
+        )
+    ))
+    # This filter prevents us from double-counting candidate-combinations
+    .loc[lambda df: df["candidate_x"] < df["candidate_y"]]
+    .sort_values([
+        "candidate_x",
+        "candidate_y",
+        "donor_id"
+    ])
+)
+candidate_pairs.head(10)
+```
+
 ## Data
 
 All data in this repository comes from the campaigns' committee filings to the [Federal Election Commission](https://www.fec.gov/) (FEC), with assistance from [ProPublica's Campaign Finance API](https://projects.propublica.org/api-docs/campaign-finance/committees/#get-committee-filings). 
