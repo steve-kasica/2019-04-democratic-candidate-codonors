@@ -1,10 +1,10 @@
-# Analysis of early 2020 Democratic campaign co-donors 
+# Analysis of early 2020 Democratic campaign co-donors
 
 This repository contains data and code supporting a [BuzzFeed News article examining donors](https://www.buzzfeednews.com/article/tariniparti/democratic-donors-2020-candidates) who gave more than $200 to multiple Democratic presidential candidates in the first quarter of the 2020 election cycle, published April 16, 2019. See below for details.
 
 ## Data
 
-All data in this repository comes from the campaigns' committee filings to the [Federal Election Commission](https://www.fec.gov/) (FEC), with assistance from [ProPublica's Campaign Finance API](https://projects.propublica.org/api-docs/campaign-finance/committees/#get-committee-filings). 
+All data in this repository comes from the campaigns' committee filings to the [Federal Election Commission](https://www.fec.gov/) (FEC), with assistance from [ProPublica's Campaign Finance API](https://projects.propublica.org/api-docs/campaign-finance/committees/#get-committee-filings).
 
 - [`inputs/candidates.csv`](inputs/candidates.csv) contains a list of high- and medium-profile Democratic presidential candidates (and primary campaign committees) for whom an "April Quarterly" filing was available on the FEC's website by 6:30am Eastern on April 16, 2019. (The filing deadline was April 15 at midnight.)
 
